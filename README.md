@@ -478,11 +478,13 @@ circle_diameter = 30  # 圆的直径，单位为mm
 测试了三组数据，分别体现了该公式在不同晶片大小、不同晶片长宽比下的精准度。
 
 lab1：较大的长宽比
+
 ![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/27251a2b-7878-4eb8-b1b0-c698629db243)
 
 ![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/630f27d9-b02e-4193-95f1-6690a2f4651e)
 
 lab2：较大的尺寸
+
 ![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/6c8d16f8-33d9-4508-b1e0-c1ac78e39627)
 
 ![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/ba2af163-7727-4e7e-bbf7-be3c60704981)
@@ -494,6 +496,8 @@ lab3:较大的长宽比&较大的尺寸
 ![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/79445b93-530d-45cd-ae29-b992c26867bb)
 
 这个对比原始公式、我推导出的公式和模拟得到的真实值得出实验结论：在三种情况下，我推导出的公式要优于传统公式。
+
+### 原创者为U202241807，禁止抄袭，欢迎各位学友交流学习
 
 
 
