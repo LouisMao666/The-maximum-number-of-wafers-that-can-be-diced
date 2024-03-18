@@ -1,6 +1,30 @@
-Solved by genetic algorithm, the maximum number of wafers that can be cut
+# question：the maximum number of wafers that can be cut / design an argorithm
+
+# 公式设计
+
+已知原始在晶圆中切取正方形晶片时，晶片数量的估算公式为：
+
+
+$$  \frac{\Pi *(晶圆直径/2)^{2}}{晶片面积}-\frac{\Pi *晶圆直径}{\sqrt{2 *晶片面积} }  $$
+
+可以理解为：
+ 
+$$ \frac{晶片面积}{晶圆面积} -\frac{晶片对角线长度}{晶圆直径} $$
+
+ 那么按照这个思路，在晶圆中切取长方形晶片时，晶片数量的估算公式为：
+
+$$  \frac{\Pi *(晶圆直径/2)^{2}}{晶片面积}-\frac{\Pi *晶圆直径}{\sqrt{晶片长度^{2}+晶片宽度^{2}  } }  $$
+
+以上就是我推导公式的过程，粗略的思考，这个公式在长宽比较大的情况下精确度要高于原始公式，下面需要通过实验来验证我的公式。
+
+ 为了完成实验，我设计了一个简单算法，来模拟计算切出最大晶片数量的真实值。
+
+ # 算法设计
+
 
 ## 遗传算法
+
+#### 写在前面：这个算法需要较大的算力，因此我并没有验证其正确性，因为并不能保证其严谨，后续提出的快速算法更为简便，大可略过这一部分。
 
 1. **初始化种群**：
    - 初始化一组初始的切割方案作为种群。每个个体表示一种切割方案，包含多个晶片的位置和尺寸。
@@ -304,7 +328,7 @@ cell_height = 1.4  # 格子的高度，单位为mm
 circle_diameter = 30  # 圆的直径，单位为mm
 ```
 
-由于圆的对称性，所以无论我们如何选择、平移这个圆，其结果都可以看做这个圆在一个格子内平移的等价情况。
+由于圆的对称性，所以无论我们如何选择、平移这个圆，其结果都可以看做这个圆在一个格子内平移的等价情况。（事实上可以看做圆心在1/4个格子中平移的结果）
 
 因此直接选择整个网格的中心作为圆心，为了解决问题，直接简单粗暴地随机在格子中取1000个点作为圆心，以包含格子最多的情况作为圆心的最佳位置。
 
@@ -447,13 +471,31 @@ circle_diameter = 30  # 圆的直径，单位为mm
 ![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/b2e62ce3-8eeb-467b-bfd6-6d9bbf41ad2a)
 ![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/66a74f16-df9e-48f6-aed9-0ddcb6f85674)
 
+简便算法在精确度上有明显优势，同时这种算法可以轻松的实现结果可视化。
+
 ### 对比传统算法
 
-![a8ffec2ad96a17bdd7db41dc783b3ee](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/df3505e5-7e72-4f9a-acdd-19ef2d1c5878)
+测试了三组数据，分别体现了该公式在不同晶片大小、不同晶片长宽比下的精准度。
 
-在晶片长宽比较大的情况下，传统算法对晶圆边缘处晶片的估算误差较大。
+lab1：较大的长宽比
+![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/27251a2b-7878-4eb8-b1b0-c698629db243)
 
-新型算法在精确度上有明显优势，同时这种算法可以轻松的实现结果可视化。
+![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/630f27d9-b02e-4193-95f1-6690a2f4651e)
+
+lab2：较大的尺寸
+![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/6c8d16f8-33d9-4508-b1e0-c1ac78e39627)
+
+![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/ba2af163-7727-4e7e-bbf7-be3c60704981)
+
+lab3:较大的长宽比&较大的尺寸
+
+![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/59e846c0-3e60-47db-b01d-c03ea88643dd)
+
+![image](https://github.com/LouisMao666/The-maximum-number-of-wafers-that-can-be-diced/assets/149593046/79445b93-530d-45cd-ae29-b992c26867bb)
+
+这个对比原始公式、我推导出的公式和模拟得到的真实值得出实验结论：在三种情况下，我推导出的公式要优于传统公式。
+
+
 
 
 
